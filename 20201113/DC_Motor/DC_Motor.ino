@@ -9,10 +9,14 @@ void setup() {
 
 void loop() {
   //シリアルモニター入力した文字に応じてモータを制御
-  if (Serial.available()) motor(Serial.read());
+  if (Serial.available()) {
+    char sign = Serial.read();
+    motor(sign);
+  }
 }
 
 void motor(char dir) {
+  Serial.println(dir);    //なくて良い
   switch (dir) {
     case 'L':
       digitalWrite(CW, LOW);
