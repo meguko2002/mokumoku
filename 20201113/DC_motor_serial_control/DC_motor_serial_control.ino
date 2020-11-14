@@ -1,4 +1,9 @@
-#define PIN_A 3  // 速度制御(analogWrite)する際はPWMピン(基板に「〜」が書かれているピン)しか使えません
+/*  
+ *   シリアルモニターからl,L,r,R,sのいずれかの文字を入力してDCモータを制御するプログラム
+ *     注意）シリアルモニター右下の”CRおよび..."のところは"改行なし"を選んでください
+*/
+
+#define PIN_A 3  // 注意）速度制御(analogWrite)する際はPWMピン(基板に「〜」が書かれているピン)しか使えません
 #define PIN_B 5  
 
 void setup() {
@@ -20,7 +25,7 @@ void motor(char dir) {
   switch (dir) {
     case 'L':
       digitalWrite(PIN_A,LOW);
-      analogWrite(PIN_B, 255);
+      analogWrite(PIN_B, 255);  //速度を0から255の範囲で設定
       break;
     case 'l':
       digitalWrite(PIN_A, LOW);
@@ -42,28 +47,4 @@ void motor(char dir) {
       Serial.println("wrong input");
       break;
   }
-  /* switch以下をif文で書いても同じ*/
-  //  if (dir == 'L') {
-  //    digitalWrite(PIN_A, LOW);
-  //    analogWrite(PIN_B, 255);
-  //  }
-  //  if (dir == 'l') {
-  //    digitalWrite(PIN_A, LOW);
-  //    analogWrite(PIN_B, 127);
-  //  }
-  //  else if (dir == 'R') {
-  //    analogWrite(PIN_A, 255);
-  //    digitalWrite(PIN_B, LOW);
-  //  }
-  //  else if (dir == 'r') {
-  //    analogWrite(PIN_A, 127);
-  //    digitalWrite(PIN_B, LOW);
-  //  }
-  //  else if (dir == 's') {
-  //    digitalWrite(PIN_A, LOW);
-  //    digitalWrite(PIN_B, LOW);
-  //  }
-  //  else {
-  //    Serial.println("wrong input");
-  //  }
 }
